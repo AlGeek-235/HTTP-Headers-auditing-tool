@@ -1,0 +1,5 @@
+#the virtual environnement
+.venv
+
+#python generated files
+__pycache__/

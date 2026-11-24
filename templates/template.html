@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report</title>
+    <style>
+        body{
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+            display: grid;
+            grid-template-columns: 100%;
+        }
+        header{
+            padding: 12px 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+        h1{
+            color: rgb(0, 119, 255);
+            font-family: "popins";
+        }
+        .score-box{
+            padding : 10px;
+            background-color: rgb(248, 241, 241);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+        }
+        #one{
+            margin-top: 40px;
+            background-color: rgb(238, 236, 236);
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            border: none;
+            box-sizing: border-box;
+            border-radius: 10px;
+            padding: 10px 20px;
+        }
+        #one div{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 0;
+        }
+        hr{
+            transform: rotate(180deg);
+            width: 100%;
+            height: 1px;
+            background-color: rgb(0, 119, 255);
+            border: none;
+        }
+        h2{
+            margin-top: 50px;
+            text-decoration: underline;
+        }
+        h2, h3{
+            color:  rgb(0, 119, 255);
+        }
+        section{
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #two ul li, #three ul li{
+            margin-left: -10px;
+            list-style: circle;
+            background-color: rgb(188, 248, 188);
+            color: green;
+            border-radius: 10px;
+            margin: 20px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+        #three ul li{
+            background-color: rgb(247, 244, 241);;
+            color: orange;
+        }
+        #two ul, #three ul, #four ol{
+            padding: 0;
+        }
+        button{
+            color : red;
+            background-color: rgb(245, 196, 196);
+            padding: 8px 5px;
+            border: none;
+            border-radius: 2px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #four ol li{
+            margin-top: 20px;
+        }
+        footer{
+            margin-top: 150px;
+        }
+        footer p{
+            margin: 0;
+            font-size: 11px;
+            text-align: left;
+        }
+        footer p:nth-child(2){
+            font-size: 8px;
+            font-weight: bold;
+            color: rgb(56, 56, 56);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div><h1>Auditing Report of HTTP Security Headers</h1></div>
+        <div class="score-box">
+            <p>Global Score : {{Score}} %</p>
+            <p>Level : {{Level}}</p>
+        </div>
+    </header>
+    <hr>
+    <section id="one">
+        <div>
+            <p>Target :</p>
+            <a href="{{ Target }}">{{ Target }}</a>
+        </div>
+        <div>
+            <p>Time : </p>
+            <p>{{ Time }}</p>
+        </div>
+    </section>
+    <h2>The Summary of analysis</h2>
+    <section id = "two">
+        <h3>HTTP headers configured properly</h3>
+        {% if  Well_secured_hd | length %}
+        <ul>
+            {% for elt in Well_secured_hd :%}
+                <li>{{ elt }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <center><button>No properly configured header</button></center>
+        {% endif %}
+    </section>
+    <section id = "three">
+        <h3>Alerted HTTP headers</h3>
+        {% if  Alert_hd | length %}
+        <ul>
+            {% for elt in Alert_hd :%}
+                <li>{{ elt }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <center><button>No Alerted header</button></center>
+        {% endif %}
+    </section>
+    <section id = "four">
+        <h3>Recommandations</h3>
+        {% if  Recommandations | length %}
+        <ol>
+            {% for elt in Recommandations :%}
+                <li>{{ elt }}</li>
+            {% endfor %}
+        </ol>
+        {% else %}
+            <center><button>No Recommandation</button></center>
+        {% endif %}
+    </section>
+    <footer>
+        <p>Developped by : Christian ALLARASSEM</p>
+        <p>CS Student, Aspiring Security | ML Eng.</p>
+    </footer>
+</body>
+</html>
