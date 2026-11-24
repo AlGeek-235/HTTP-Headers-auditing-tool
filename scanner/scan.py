@@ -8,7 +8,6 @@ headers = [
     "referrer-policy",
     "permissions-policy"
     ]
-
 '''
 The below functions are parsing functions used to parse
 headers. Each security header has its own parsing function which
