@@ -56,4 +56,4 @@ if result["status"] == 200:
     print(f"Level : {r['Level']}")
     generate.generator(r)
 else :
-    print(result["status"])
+    print(f"Returned status : {result["status"]}")
